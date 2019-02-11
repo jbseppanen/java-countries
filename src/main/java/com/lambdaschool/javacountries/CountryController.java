@@ -45,7 +45,7 @@ public class CountryController {
 
     @RequestMapping("age/age")
     public ArrayList<Country> getCountriesGreaterThanByAge(@RequestParam(value = "age") int ageInput) {
-        return WebCountriesApplication.list.findCountries(e -> (e.getPopulation() > ageInput));
+        return WebCountriesApplication.list.findCountries(e -> (e.getAge() > ageInput));
     }
 
     @RequestMapping("age/min")
