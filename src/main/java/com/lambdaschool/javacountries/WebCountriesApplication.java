@@ -4,10 +4,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class JavaCountriesApplication {
+public class WebCountriesApplication {
+
+    static CountryList list;
 
     public static void main(String[] args) {
-        SpringApplication.run(JavaCountriesApplication.class, args);
+        list = new CountryList();
+        SpringApplication.run(WebCountriesApplication.class, args);
     }
 
 }

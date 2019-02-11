@@ -3,7 +3,7 @@ package com.lambdaschool.javacountries;
 import java.util.ArrayList;
 
 public class CountryList {
-    public ArrayList<Country> countryList = new ArrayList();
+    public ArrayList<Country> countryList = new ArrayList<Country>();
 
     public CountryList() {
         countryList.add(new Country("China", 1420062022, 9388211, 39));
@@ -217,5 +217,15 @@ public class CountryList {
             }
         }
         return null;
+    }
+
+    public ArrayList<Country> findCountries(CheckCountry expression) {
+        ArrayList<Country> countries = new ArrayList<>();
+        for (Country country:countryList) {
+            if (expression.test(country)) {
+                countries.add(country);
+            }
+        }
+        return countries;
     }
 }
