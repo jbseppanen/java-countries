@@ -13,17 +13,23 @@ public class CountryController {
 
     @RequestMapping("names/all")
     public ArrayList<Country> getAllCountries() {
-        return WebCountriesApplication.list.countryList;
+        ArrayList<Country> countries = WebCountriesApplication.list.countryList;
+        countries.sort((e1, e2) -> e1.getName().compareToIgnoreCase(e2.getName()));
+        return countries;
     }
 
     @RequestMapping("names/begin")
     public ArrayList<Country> getCountriesByLetter(@RequestParam(value = "letter") String letter) {
-        return WebCountriesApplication.list.findCountries(e -> (e.getName().substring(0, 1).toLowerCase().equals(letter.toLowerCase())));
+        ArrayList<Country> countries = WebCountriesApplication.list.findCountries(e -> (e.getName().substring(0, 1).toLowerCase().equals(letter.toLowerCase())));
+        countries.sort((e1, e2) -> e1.getName().compareToIgnoreCase(e2.getName()));
+        return countries;
     }
 
     @RequestMapping("names/size")
     public ArrayList<Country> getCountriesGreaterThanByNameLength(@RequestParam(value = "letters") int length) {
-        return WebCountriesApplication.list.findCountries(e -> (e.getName().length() > length));
+        ArrayList<Country> countries = WebCountriesApplication.list.findCountries(e -> (e.getName().length() > length));
+        countries.sort((e1, e2) -> e1.getName().compareToIgnoreCase(e2.getName()));
+        return countries;
     }
 
     @RequestMapping("population/size")
@@ -40,7 +46,7 @@ public class CountryController {
     @RequestMapping("population/max")
     public Country getCountriesPopMax() {
         WebCountriesApplication.list.countryList.sort(Comparator.comparingLong(Country::getPopulation));
-        return WebCountriesApplication.list.countryList.get(WebCountriesApplication.list.countryList.size()-1);
+        return WebCountriesApplication.list.countryList.get(WebCountriesApplication.list.countryList.size() - 1);
     }
 
     @RequestMapping("age/age")
@@ -57,7 +63,7 @@ public class CountryController {
     @RequestMapping("age/max")
     public Country getCountriesAgeMax() {
         WebCountriesApplication.list.countryList.sort(Comparator.comparingLong(Country::getAge));
-        return WebCountriesApplication.list.countryList.get(WebCountriesApplication.list.countryList.size()-1);
+        return WebCountriesApplication.list.countryList.get(WebCountriesApplication.list.countryList.size() - 1);
     }
 
 }
